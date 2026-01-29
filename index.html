@@ -13,14 +13,8 @@
   <body>
     <canvas id="bg-canvas"></canvas>
 
-    <!-- Navbar -->
     <nav class="navbar">
       <div class="nav-brand">GamerGear Pro</div>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#shop">Shop</a></li>
-        <li><a href="#orders">Orders</a></li>
-      </ul>
       <div class="nav-right">
         <div class="user-info">
           <span id="userName">Loading...</span>
@@ -31,19 +25,17 @@
       </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="home" class="hero">
+    <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title glitch">LEVEL UP YOUR SETUP</h1>
         <p class="hero-subtitle">
           Gear Pro untuk Gamer Sejati. Diskon hingga 50%!
         </p>
-        <button class="cta-primary" onclick="scrollToShop()">SHOP NOW</button>
+        <button class="cta-primary" id="shopBtn">SHOP NOW</button>
       </div>
     </section>
 
-    <!-- Shop -->
-    <section id="shop" class="shop-section">
+    <section class="shop-section">
       <h2 class="section-title">EPIC GEAR COLLECTION</h2>
       <div class="products-grid" id="productsGrid"></div>
     </section>
