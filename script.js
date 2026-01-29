@@ -340,39 +340,3 @@ document.addEventListener("click", (e) => {
     e.target.closest(".modal").style.display = "none";
   }
 });
-
-// Mobile Modal Scroll Fix
-function toggleBodyScroll(modalOpen) {
-  document.body.classList.toggle("modal-open", modalOpen);
-  document.body.style.overflow = modalOpen ? "hidden" : "";
-}
-
-document.querySelectorAll(".modal").forEach((modal) => {
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      toggleBodyScroll(false);
-      modal.style.display = "none";
-    }
-  });
-
-  const closeBtn = modal.querySelector(".modal-close");
-  if (closeBtn) {
-    closeBtn.onclick = () => {
-      toggleBodyScroll(false);
-      modal.style.display = "none";
-    };
-  }
-});
-
-// Prevent zoom + iOS fixes
-document.querySelectorAll("input, select").forEach((input) => {
-  input.addEventListener("focus", () => {
-    document.body.style.zoom = "0.99"; // Prevent zoom
-  });
-  input.addEventListener("blur", () => {
-    document.body.style.zoom = "";
-  });
-});
-
-// Touch feedback
-document.addEventListener("touchstart", function () {}, true);
