@@ -1,0 +1,1088 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --neon-blue: #00d4ff;
+  --neon-green: #00ff88;
+  --neon-pink: #ff00ff;
+  --bg-dark: #0a0a0a;
+  --card-bg: rgba(15, 15, 30, 0.8);
+}
+
+body {
+  font-family: "Rajdhani", sans-serif;
+  background: var(--bg-dark);
+  color: white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+#bg-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(20px);
+  z-index: 1000;
+  border-bottom: 1px solid var(--neon-green);
+}
+
+.nav-brand {
+  font-family: "Orbitron", monospace;
+  font-size: 1.8rem;
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--neon-green);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--neon-green);
+}
+
+.cart-btn {
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-green));
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+  transition: all 0.3s;
+}
+
+.cart-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+}
+
+/* Hero */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 212, 255, 0.1),
+    transparent
+  );
+}
+
+.hero-title {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(3rem, 8vw, 6rem);
+  margin-bottom: 1rem;
+  background: linear-gradient(
+    45deg,
+    var(--neon-blue),
+    var(--neon-green),
+    var(--neon-pink)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+.cta-primary {
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+  border: none;
+  padding: 1.2rem 3rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+  transition: all 0.3s;
+}
+
+.cta-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(0, 255, 136, 0.6);
+}
+
+/* Login/Register */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.logo-glow {
+  font-family: "Orbitron", monospace;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px var(--neon-green);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.login-card input {
+  width: 100%;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border 0.3s;
+}
+
+.login-card input:focus {
+  outline: none;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+.divider {
+  margin: 2rem 0;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.guest-btn {
+  background: linear-gradient(45deg, var(--neon-pink), var(--neon-green));
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.login-card a {
+  color: var(--neon-green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-card a:hover {
+  text-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Shop */
+.shop-section {
+  padding: 8rem 5% 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: "Orbitron", monospace;
+  font-size: 3.5rem;
+  text-align: center;
+  margin-bottom: 4rem;
+  background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+}
+
+.product-card {
+  background: var(--card-bg);
+  border-radius: 25px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 212, 255, 0.1),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+.product-card:hover::before {
+  left: 100%;
+}
+
+.product-card:hover {
+  transform: translateY(-15px) rotateX(5deg);
+  border-color: var(--neon-blue);
+  box-shadow: 0 30px 60px rgba(0, 212, 255, 0.3);
+}
+
+.product-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 20px var(--neon-green));
+}
+
+.product-name {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.product-price {
+  font-size: 2.2rem;
+  font-weight: 900;
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+.add-cart-btn {
+  background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  color: black;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 10px 25px rgba(0, 255, 136, 0.4);
+}
+
+.add-cart-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 35px rgba(0, 255, 136, 0.6);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  z-index: 2000;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--card-bg);
+  border-radius: 25px;
+  padding: 3rem;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid var(--neon-blue);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--neon-pink);
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0 1rem;
+  font-size: 1.3rem;
+}
+
+.packing-modal .modal-content {
+  text-align: center;
+  max-width: 450px;
+}
+
+.packing-animation {
+  margin: 2rem 0;
+}
+
+.box {
+  font-size: 6rem;
+  margin-bottom: 2rem;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+.tape {
+  width: 100px;
+  height: 4px;
+  background: var(--neon-green);
+  margin: 0 auto 2rem;
+  border-radius: 2px;
+  animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100px;
+  }
+}
+
+.progress-bar {
+  background: rgba(255, 255, 255, 0.1);
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--neon-green), var(--neon-blue));
+  width: 0%;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 10px var(--neon-green);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem 3%;
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    gap: 1rem;
+  }
+  .hero-title {
+    font-size: 3rem;
+  }
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   MOBILE-FIRST RESPONSIVE PERFECTION
+   Fix semua bug HP + rapi 100%
+======================================= */
+
+/* Reset Mobile Touch */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Prevent zoom on input focus */
+input,
+select,
+textarea {
+  font-size: 16px; /* iOS Safari fix */
+}
+
+/* Viewport fix */
+@viewport {
+  width: device-width;
+}
+
+/* Mobile Navbar - Fixed Top */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 4%;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    display: none; /* Hide desktop nav on mobile */
+  }
+
+  .nav-brand {
+    font-size: 1.5rem;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* Core Mobile Layout */
+@media (max-width: 768px) {
+  /* Hero Fullscreen */
+  .hero {
+    height: 100vh;
+    padding: 0 5%;
+    min-height: 100vh;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 3.5rem) !important;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .cta-primary {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    min-height: 50px;
+  }
+
+  /* Login/Register Cards */
+  .login-wrapper {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  .login-card {
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+    max-width: none;
+    border-radius: 20px;
+  }
+
+  .logo-glow {
+    font-size: 1.5rem;
+  }
+
+  .login-card input {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    min-height: 50px;
+    font-size: 16px;
+  }
+
+  .login-card button {
+    min-height: 50px;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  /* Shop Grid Single Column */
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .shop-section {
+    padding: 6rem 0 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Product Cards Mobile */
+  .product-card {
+    padding: 1.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 20px;
+  }
+
+  .product-icon {
+    font-size: 3rem;
+  }
+
+  .product-name {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  .product-desc {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .add-cart-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  /* Modals Mobile Fullscreen */
+  .modal-content {
+    width: 95%;
+    max-width: 95%;
+    max-height: 95vh;
+    margin: 2.5% auto;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .total-row {
+    font-size: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  /* Packing Animation Mobile */
+  .packing-modal .modal-content {
+    width: 95%;
+    padding: 2rem 1rem;
+  }
+
+  .box {
+    font-size: 4rem;
+  }
+
+  /* Navbar Mobile Cart */
+  .cart-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+    min-height: 44px;
+  }
+}
+
+/* Extra Small Phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 0 3%;
+  }
+
+  .login-card {
+    margin: 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .product-card {
+    margin: 0;
+    padding: 1.2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 6vw, 2.8rem) !important;
+  }
+}
+
+/* Landscape Mobile Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+}
+
+/* iOS Safari Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* iPhone X+ Safe Area */
+  @supports (padding: max(0px)) {
+    .navbar {
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+  }
+}
+
+/* Prevent Body Scroll on Modal Open */
+.modal[style*="block"] {
+  overflow: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hover Disable on Touch */
+@media (hover: none) and (pointer: coarse) {
+  .product-card:hover,
+  .cta-primary:hover,
+  .add-cart-btn:hover,
+  .cart-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Touch Target Minimum 44px */
+  button,
+  a,
+  .cart-btn,
+  .add-cart-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .product-icon {
+    font-size: 3.2rem;
+  }
+
+  .product-price {
+    font-size: 2rem;
+  }
+}
+
+/* ========================================
+   MOBILE-FIRST RESPONSIVE PERFECTION
+   Fix semua bug HP + rapi 100%
+======================================= */
+
+/* Reset Mobile Touch */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* Prevent zoom on input focus */
+input,
+select,
+textarea {
+  font-size: 16px; /* iOS Safari fix */
+}
+
+/* Viewport fix */
+@viewport {
+  width: device-width;
+}
+
+/* Mobile Navbar - Fixed Top */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 4%;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    display: none; /* Hide desktop nav on mobile */
+  }
+
+  .nav-brand {
+    font-size: 1.5rem;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* Core Mobile Layout */
+@media (max-width: 768px) {
+  /* Hero Fullscreen */
+  .hero {
+    height: 100vh;
+    padding: 0 5%;
+    min-height: 100vh;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 7vw, 3.5rem) !important;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+  }
+
+  .cta-primary {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    min-height: 50px;
+  }
+
+  /* Login/Register Cards */
+  .login-wrapper {
+    padding: 1rem;
+    min-height: 100vh;
+  }
+
+  .login-card {
+    margin: 1rem;
+    padding: 2rem 1.5rem;
+    max-width: none;
+    border-radius: 20px;
+  }
+
+  .logo-glow {
+    font-size: 1.5rem;
+  }
+
+  .login-card input {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    min-height: 50px;
+    font-size: 16px;
+  }
+
+  .login-card button {
+    min-height: 50px;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+
+  /* Shop Grid Single Column */
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  .shop-section {
+    padding: 6rem 0 3rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Product Cards Mobile */
+  .product-card {
+    padding: 1.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 20px;
+  }
+
+  .product-icon {
+    font-size: 3rem;
+  }
+
+  .product-name {
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
+
+  .product-desc {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .product-price {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .add-cart-btn {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    min-height: 48px;
+  }
+
+  /* Modals Mobile Fullscreen */
+  .modal-content {
+    width: 95%;
+    max-width: 95%;
+    max-height: 95vh;
+    margin: 2.5% auto;
+    border-radius: 20px;
+    padding: 2rem 1.5rem;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .total-row {
+    font-size: 1.5rem;
+    padding: 1.5rem 0;
+  }
+
+  /* Packing Animation Mobile */
+  .packing-modal .modal-content {
+    width: 95%;
+    padding: 2rem 1rem;
+  }
+
+  .box {
+    font-size: 4rem;
+  }
+
+  /* Navbar Mobile Cart */
+  .cart-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+    min-height: 44px;
+  }
+}
+
+/* Extra Small Phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 0 3%;
+  }
+
+  .login-card {
+    margin: 0.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .product-card {
+    margin: 0;
+    padding: 1.2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.8rem, 6vw, 2.8rem) !important;
+  }
+}
+
+/* Landscape Mobile Fix */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: 100vh;
+    align-items: center;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+  }
+
+  .login-card {
+    padding: 1.5rem;
+  }
+}
+
+/* iOS Safari Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+  .navbar {
+    position: fixed;
+    top: 0;
+    padding-top: env(safe-area-inset-top);
+  }
+
+  /* iPhone X+ Safe Area */
+  @supports (padding: max(0px)) {
+    .navbar {
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+  }
+}
+
+/* Prevent Body Scroll on Modal Open */
+.modal[style*="block"] {
+  overflow: hidden;
+}
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Hover Disable on Touch */
+@media (hover: none) and (pointer: coarse) {
+  .product-card:hover,
+  .cta-primary:hover,
+  .add-cart-btn:hover,
+  .cart-btn:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Touch Target Minimum 44px */
+  button,
+  a,
+  .cart-btn,
+  .add-cart-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .product-icon {
+    font-size: 3.2rem;
+  }
+
+  .product-price {
+    font-size: 2rem;
+  }
+}
